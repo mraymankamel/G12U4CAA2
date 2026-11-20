@@ -1,0 +1,1239 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- Theme Name: Midnight Bronze (Titanium V.Max V4 - Clean Result Edition) -->
+    <title>🌟 التحدي الأكبر 🚀</title>
+
+    <meta property="og:title" content="🌟 التحدي الأكبر 🚀">
+    <meta property="og:description" content="تحدي استثنائي مصمم لقياس تركيزك الحقيقي وقوة ملاحظتك في أدق التفاصيل تحت الضغط. هل تقبل التحدي؟">
+    <meta property="og:image" content="https://dummyimage.com/1200x630/07090F/F97316.png&text=Elite+Challenge">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Outfit:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js" async></script>
+    
+    <style>
+        /* ========================================================
+           💎 UI THEME: Midnight Bronze (Titanium V.Max V4)
+           ======================================================== */
+        :root {
+            --bg-dark: #07090F;
+            --glass-bg: rgba(17, 24, 39, 0.78);
+            --glass-border: rgba(249, 115, 22, 0.28);
+            --text-main: #F8FAFC;
+            --text-muted: #94A3B8;
+            --q-font-size: 22px;
+            --error-color: #F43F5E;
+            --success-color: #10B981;
+            --accent: #F97316;
+            --accent-glow: rgba(249, 115, 22, 0.42);
+            --card-bg: rgba(31, 41, 55, 0.62);
+            --input-bg: rgba(3, 7, 18, 0.86);
+        }
+
+        /* 🌈 Dynamic Chroma Shifts (5 Worlds) */
+        body.theme-1 { --accent: #F97316; --accent-glow: rgba(249, 115, 22, 0.42); }
+        body.theme-2 { --accent: #EAB308; --accent-glow: rgba(234, 179, 8, 0.42); }
+        body.theme-3 { --accent: #14B8A6; --accent-glow: rgba(20, 184, 166, 0.42); }
+        body.theme-4 { --accent: #3B82F6; --accent-glow: rgba(59, 130, 246, 0.42); }
+        body.theme-5 { --accent: #A855F7; --accent-glow: rgba(168, 85, 247, 0.42); }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body, .main-container, .review-item, .explanation-box, .print-options-grid, .glass-panel, .accent-text, .btn, .timer-box, .badge-award { 
+            -webkit-user-select: none !important; 
+            -moz-user-select: none !important; 
+            -ms-user-select: none !important; 
+            user-select: none !important; 
+            transition: 0.5s ease;
+        }
+        input#studentName { 
+            -webkit-user-select: auto !important; 
+            -moz-user-select: auto !important; 
+            -ms-user-select: auto !important; 
+            user-select: auto !important; 
+            pointer-events: auto !important;
+        }
+
+        body { font-family: 'Cairo', sans-serif; background-color: var(--bg-dark); color: var(--text-main); min-height: 100vh; padding: 20px 10px; overflow-x: hidden; }
+
+        .bg-grid { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; background-image: linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px); background-size: 40px 40px; }
+        .bg-orb { position: fixed; top: -12%; left: 50%; transform: translateX(-50%); width: 70vw; height: 70vw; background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%); z-index: 0; filter: blur(140px); pointer-events: none; }
+
+        .main-container { width: 100%; max-width: 850px; margin: 0 auto; background: var(--glass-bg); backdrop-filter: blur(25px); border-radius: 24px; border: 1px solid var(--glass-border); box-shadow: 0 0 50px rgba(0,0,0,0.9), inset 0 1px 1px rgba(255,255,255,0.06); display: flex; flex-direction: column; position: relative; z-index: 10; }
+
+        .shake-active { animation: shakeAlert 0.4s both; }
+        @keyframes shakeAlert { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-6px); } 50% { transform: translateX(6px); } 75% { transform: translateX(-6px); } }
+
+        header { padding: 75px 20px 30px; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; border-bottom: 1px solid rgba(255,255,255,0.06); position: relative; }
+        
+        .top-bar-controls { position: absolute; top: 20px; left: 0; width: 100%; padding: 0 20px; display: flex; justify-content: space-between; align-items: center; z-index: 20; direction: ltr !important; }
+        .left-controls, .right-controls, .time-controls, .eye-care-controls { display: flex; align-items: center; gap: 8px; }
+        
+        header img { 
+            width: 115px; height: 115px; object-fit: contain; 
+            background-color: #FFFFFF !important; padding: 6px; 
+            border-radius: 50%; border: 3px solid var(--accent); 
+            box-shadow: 0 0 28px var(--accent-glow); 
+            cursor: pointer; flex-shrink: 0; aspect-ratio: 1/1; 
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            -webkit-user-select: none !important; user-select: none !important;
+        }
+        header img:hover { transform: scale(1.08) rotate(5deg); }
+
+        header h1 { font-family: 'Outfit', sans-serif; font-size: 32px; font-weight: 900; margin: 10px 0 0; direction: ltr; text-shadow: 0 2px 10px rgba(0,0,0,0.8); color: #FFF; }
+        header .job-title { font-size: 15px; font-weight: 800; color: var(--text-muted); letter-spacing: 2px; text-transform: uppercase; direction: ltr; }
+        header .slogan { font-family: 'Outfit', sans-serif; font-size: 16px; font-style: italic; color: var(--accent); margin: 5px 0 10px 0; direction: ltr; unicode-bidi: isolate; text-shadow: 0 0 15px var(--accent-glow); }
+        .vip-phone { background: linear-gradient(135deg, var(--accent), #111827); color: #FFF; font-family: 'Outfit', sans-serif; padding: 8px 28px; border-radius: 30px; font-weight: 900; font-size: 16px; letter-spacing: 2px; box-shadow: 0 0 20px var(--accent-glow); direction: ltr; border: 1px solid rgba(255,255,255,0.12); margin-top: 5px; }
+
+        .timer-box { background: var(--input-bg); color: var(--accent); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 0 16px; height: 44px; display: flex; align-items: center; font-family: 'Outfit', sans-serif; font-weight: 900; font-size: 18px; box-shadow: 0 4px 12px rgba(0,0,0,0.8); letter-spacing: 1px; }
+        .time-dot { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; margin-right: 8px; animation: blink 1s infinite; box-shadow: 0 0 10px var(--accent); }
+        .timer-box.danger { color: var(--error-color); border-color: var(--error-color); box-shadow: 0 0 15px rgba(244,63,94,0.45); }
+        .timer-box.danger .time-dot { background: var(--error-color); box-shadow: 0 0 10px var(--error-color); }
+        .hidden-timer { color: transparent !important; box-shadow: none; border-color: transparent; }
+        
+        .icon-btn { background: var(--input-bg); color: var(--text-muted); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; width: 44px; height: 44px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 18px; outline: none; transition: 0.3s; box-shadow: 0 4px 12px rgba(0,0,0,0.8); }
+        .icon-btn:hover { border-color: var(--accent); color: var(--accent); background: rgba(255,255,255,0.06); box-shadow: 0 0 15px var(--accent-glow); }
+
+        /* Smart Cheers */
+        .cheer-wrapper { position: fixed; top: -140px; right: 20px; z-index: 99999; pointer-events: none; transition: top 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275); max-width: 90vw; }
+        .cheer-wrapper.show { top: 20px; }
+        .cheer-bubble { background: var(--input-bg); backdrop-filter: blur(20px); border-radius: 16px; padding: 16px 22px; display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 15px; border: 1px solid rgba(255,255,255,0.12); border-right: 5px solid var(--accent); box-shadow: 0 20px 40px rgba(0,0,0,0.9); direction: rtl; }
+        .cheer-bubble img { grid-column: 2; grid-row: 1 / span 3; width: 58px; height: 58px; border-radius: 50%; border: 2px solid var(--accent); background: #FFFFFF !important; padding: 4px; object-fit: contain; aspect-ratio: 1/1; }
+        .cheer-en { font-family:'Outfit', sans-serif; font-size:15px; font-weight:900; direction:ltr; text-align:left; color: #FFF; }
+        .cheer-separator { grid-column: 1; width: 100%; height: 1px; background: rgba(255,255,255,0.08); border-bottom: 1px dashed rgba(255,255,255,0.15); margin: 6px 0; }
+        .cheer-ar { font-family:'Cairo', sans-serif; font-size:14px; font-weight:800; color:var(--accent); direction:rtl; text-align:right; }
+
+        @keyframes blink { 0%, 100% {opacity:1;} 50% {opacity:0.2;} }
+
+        .content-body, #result-screen { padding: 40px 30px; flex: 1; position: relative; }
+        #start-screen { text-align: center; }
+        .welcome-card { background: var(--card-bg); border-radius: 20px; padding: 42px 25px; margin-bottom: 30px; border: 1px solid rgba(255,255,255,0.06); box-shadow: 0 10px 30px rgba(0,0,0,0.6); }
+        .welcome-card h3 { font-size: 26px; font-weight: 900; color: var(--accent); margin-bottom: 18px; text-shadow: 0 0 15px var(--accent-glow); }
+        .welcome-card p { font-size: 16px; line-height: 1.9; color: var(--text-main); font-weight: 600; }
+        
+        .ta-grid { display: flex; flex-direction: column; gap: 12px; margin-bottom: 30px; }
+        .ta-btn { background: var(--input-bg); color: var(--text-muted); border: 2px solid rgba(255,255,255,0.1); padding: 16px; font-size: 16px; border-radius: 14px; font-weight: 800; font-family: 'Outfit', 'Cairo'; cursor: pointer; transition: 0.3s; }
+        .ta-btn.active { background: rgba(255,255,255,0.06); color: var(--accent); border-color: var(--accent); box-shadow: 0 0 15px var(--accent-glow); transform: scale(1.02); }
+
+        .avatar-grid { display: flex; justify-content: center; align-items: center; gap: 15px; margin-bottom: 15px; flex-wrap: nowrap; overflow-x: auto; padding: 15px 5px 25px 5px; }
+        .avatar-option { font-size: 34px; padding: 14px 20px; background: var(--input-bg); border-radius: 16px; cursor: pointer; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 4px 12px rgba(0,0,0,0.6); transition: 0.3s; flex-shrink: 0; }
+        .avatar-option.selected { background: rgba(255,255,255,0.1); border-color: var(--accent); box-shadow: 0 0 25px var(--accent-glow); transform: scale(1.1) translateY(-5px); }
+
+        .input-group input { width: 100%; padding: 22px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.15); background: var(--input-bg); color: var(--text-main); font-size: 18px; outline: none; margin-bottom: 30px; font-weight: 800; text-align: center; box-shadow: inset 0 2px 8px rgba(0,0,0,0.9); transition: 0.3s; }
+        .input-group input:focus { border-color: var(--accent); box-shadow: inset 0 2px 8px rgba(0,0,0,0.9), 0 0 20px var(--accent-glow); }
+        .input-group input::placeholder { color: #64748B; }
+
+        #quiz-screen, #result-screen { display: none; }
+        
+        .hud-progress-wrapper { background: var(--card-bg); border: 1px solid rgba(255,255,255,0.06); border-radius: 16px; padding: 20px 24px 30px; margin-bottom: 35px; box-shadow: 0 10px 25px rgba(0,0,0,0.6); position: relative; }
+        .hud-progress-wrapper::before { content: ''; position: absolute; top: 0; right: 0; width: 6px; height: 100%; background: var(--accent); border-radius: 0 16px 16px 0; box-shadow: 0 0 15px var(--accent-glow); }
+        .hud-stats { display: flex; justify-content: space-between; align-items: center; position: relative; z-index: 2; direction: rtl; flex-wrap: wrap; gap: 10px; }
+        .hud-student { display: flex; align-items: center; gap: 14px; font-weight: 800; font-size: 17px; color: #FFF; }
+        .hud-student .avatar-ring { background: var(--input-bg); border: 2px solid var(--accent); width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 15px var(--accent-glow); font-size: 24px; flex-shrink: 0; }
+        .hud-counter { font-family: 'Outfit'; font-weight: 900; font-size: 18px; color: var(--accent); direction: ltr; text-shadow: 0 0 10px var(--accent-glow); }
+        .hud-bar-container { margin-top: 30px; height: 8px; background: rgba(255,255,255,0.06); border-radius: 4px; position: relative; direction: ltr; margin-right: 25px; margin-left: 25px; box-shadow: inset 0 1px 3px rgba(0,0,0,0.9); }
+        .hud-bar-fill { position: relative; height: 100%; background: linear-gradient(90deg, var(--accent), #FFEDD5); width: 0%; transition: width 0.6s ease; border-radius: 4px; box-shadow: 0 0 15px var(--accent-glow); }
+        .hud-avatar-runner { position: absolute; right: -22px; top: 50%; transform: translateY(-50%); width: 44px; height: 44px; background: var(--input-bg); border: 2px solid var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 22px; box-shadow: 0 0 15px var(--accent-glow); flex-shrink: 0; z-index: 5; transition: 0.6s ease; }
+
+        .station-card { background: var(--card-bg); padding: 40px 30px; border-radius: 20px; margin-bottom: 35px; border: 1px solid rgba(255,255,255,0.06); box-shadow: 0 15px 35px rgba(0,0,0,0.6); }
+        .question-text { display: flex; align-items: center; gap: 20px; margin-bottom: 40px; direction: ltr; width: 100%; }
+        /* 🛡️ BULLETPROOF ENCAPSULATION */
+        .question-text-wrapper { flex: 1; font-family: 'Outfit'; font-size: var(--q-font-size); font-weight: 800; line-height: 1.7; transition: 0.3s; width: 100%; display: block; text-align: left; direction: ltr; color: #FFF; }
+        
+        .options-list { display: flex; flex-direction: column; gap: 18px; direction: ltr; }
+        .option-item { background: rgba(255,255,255,0.025); border: 1px solid rgba(255,255,255,0.06); border-left: 5px solid #475569; border-radius: 14px; padding: 20px 24px; cursor: pointer; display: flex; align-items: center; gap: 20px; transition: 0.2s; }
+        .option-item.selected { background: rgba(255,255,255,0.08); border-color: var(--accent); border-left: 6px solid var(--accent); box-shadow: 0 0 25px var(--accent-glow); }
+        .opt-letter { background: var(--input-bg); color: var(--accent); width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Outfit'; font-weight: 900; font-size: 18px; border: 1px solid rgba(255,255,255,0.1); flex-shrink: 0; }
+        .option-item.selected .opt-letter { background: var(--accent); color: #07090F; border-color: var(--accent); text-shadow: none; }
+        .opt-text { font-family: 'Outfit'; font-weight: 600; font-size: 19px; color: var(--text-muted); direction: ltr; text-align: left; }
+        .option-item.selected .opt-text { color: #FFF; }
+
+        .action-btns { display: flex; flex-direction: row-reverse; justify-content: space-between; gap: 20px; direction: ltr; }
+        .btn { padding: 20px 30px; border-radius: 16px; font-weight: 900; font-size: 17px; border: 1px solid var(--accent); cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 10px; font-family: 'Outfit', 'Cairo'; text-transform: uppercase; transition: 0.3s; }
+        .btn-outline { background: transparent; color: #FFF; border-color: rgba(255,255,255,0.15); }
+        .btn-outline:hover:not(:disabled) { background: rgba(255,255,255,0.06); border-color: var(--accent); color: var(--accent); box-shadow: 0 0 25px var(--accent-glow); }
+        .btn-prev { min-width: 140px; border-color: rgba(255,255,255,0.08); color: var(--text-muted); }
+        .btn-prev:hover:not(:disabled) { border-color: var(--text-main); color: var(--text-main); background: rgba(255,255,255,0.05); }
+        .btn-prev:disabled { opacity: 0.3; cursor: not-allowed; }
+        .btn-solid { background: linear-gradient(135deg, var(--accent), #111827); color: #FFFFFF; box-shadow: 0 0 30px var(--accent-glow); flex: 1; font-size: 19px; }
+        .btn-solid:hover { transform: translateY(-3px); box-shadow: 0 0 40px var(--accent-glow); }
+
+        .score-card { background: var(--card-bg); border-radius: 24px; padding: 50px 25px; text-align: center; margin-bottom: 40px; border: 1px solid rgba(255,255,255,0.06); box-shadow: 0 20px 50px rgba(0,0,0,0.6); }
+        .score-circle { width: 240px; height: 240px; border-radius: 50%; margin: 0 auto 30px; display: flex; align-items: center; justify-content: center; font-family: 'Outfit'; font-size: 62px; font-weight: 900; color: #FFF; background: linear-gradient(135deg, var(--accent), #07090F); border: 12px solid var(--bg-dark); box-shadow: 0 0 50px var(--accent-glow), 0 0 0 5px var(--accent); direction: ltr; }
+        #score-percent-text { font-family: 'Outfit'; font-size: 22px; font-weight: 900; color: var(--accent); margin-bottom: 15px; direction: ltr; }
+        
+        #student-display-name { font-size: 24px; font-weight: 900; color: #FFF; margin-bottom: 25px; display: flex; align-items: center; justify-content: center; gap: 10px; }
+        .result-avatar { font-size: 28px; background: var(--input-bg); border: 2px solid var(--accent); border-radius: 50%; width: 50px; height: 50px; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 0 15px var(--accent-glow); }
+        
+        .scratch-container { position: relative; display: inline-block; margin-top: 10px; border-radius: 16px; overflow: hidden; box-shadow: 0 0 35px rgba(0,0,0,0.9); border: 1px solid rgba(255,255,255,0.12); }
+        .badge-award { display: inline-block; background: linear-gradient(135deg, var(--accent), #07090F); color: #FFFFFF; padding: 24px 40px; font-weight: 900; font-size: 24px; min-width: 320px; min-height: 85px; font-family: 'Outfit', 'Cairo'; }
+        #scratch-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; cursor: crosshair; z-index: 5; }
+
+        .result-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 50px; }
+        .result-actions .btn { width: 100%; font-size: 15px; padding: 18px; border-radius: 14px; }
+        .btn-full { grid-column: span 2; }
+        .btn-whatsapp { background: #10B981; color: #fff; border-color: #10B981; }
+
+        .review-item { background: var(--card-bg); border-radius: 16px; padding: 30px; margin-bottom: 25px; text-align: left; direction: ltr; border: 1px solid rgba(255,255,255,0.06); box-shadow: 0 5px 20px rgba(0,0,0,0.6); page-break-inside: avoid; }
+        .review-item.is-correct { border-left: 6px solid var(--success-color); }
+        .review-item.is-wrong { border-left: 6px solid var(--error-color); }
+        .explanation-box { background: rgba(255,255,255,0.02); border-radius: 12px; padding: 22px; margin-top: 20px; border-right: 4px solid var(--accent); display: flex; flex-direction: column; gap: 12px; border: 1px solid rgba(255,255,255,0.06); }
+        
+        #cheat-modal, #pause-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(7, 9, 15, 0.92); z-index: 999999; align-items: center; justify-content: center; backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); }
+        .cheat-content { background: var(--card-bg); padding: 45px 35px; border-radius: 24px; text-align: center; max-width: 90%; width: 500px; border: 2px solid var(--error-color); box-shadow: 0 0 50px rgba(244,63,94,0.35); }
+        .cheat-content h1 { margin-bottom: 18px; font-size: 28px; }
+        .cheat-content p { font-size: 17px; line-height: 1.8; margin-bottom: 25px; white-space: pre-line; }
+
+        /* ========================================================
+           🖨️ PRINT MASTER ENGINE V.MAX (A4, Header, Footer, Watermark)
+           ======================================================== */
+        #print-container { display: none; }
+
+        @media print {
+            @page { size: A4; margin: 0; }
+            body { background: #fff !important; color: #000 !important; margin: 0; padding: 0; }
+            .no-print, #app-container, .bg-orb, .bg-grid, #cheat-modal, #pause-modal { display: none !important; }
+            
+            #print-container { display: block !important; width: 100%; max-width: 210mm; margin: 0 auto; background: transparent; }
+            
+            table.print-table { width: 100%; border-collapse: collapse; }
+            thead.print-thead { display: table-header-group; }
+            tfoot.print-tfoot { display: table-footer-group; }
+            tbody.print-tbody { display: table-row-group; }
+            
+            .header-content { display: flex; align-items: center; gap: 15px; padding: 15mm 15mm 5mm; border-bottom: 2px solid #000; margin-bottom: 5mm; justify-content: flex-start; text-align: left; direction: ltr; }
+            .header-content img { width: 60px; height: 60px; border-radius: 50%; border: 2px solid #000; }
+            .header-content div strong { font-family: 'Outfit'; font-size: 26px; font-weight: 900; display: block; color: #000; line-height: 1.2; text-align: left; }
+            .header-content div span { font-family: 'Outfit'; font-size: 14px; color: #333; text-transform: uppercase; letter-spacing: 1px; text-align: left; display: block; }
+
+            .footer-content { display: flex; justify-content: space-between; align-items: center; padding: 5mm 15mm 15mm; border-top: 2px solid #000; font-family: 'Outfit'; font-weight: bold; font-size: 14px; color: #000; direction: ltr; }
+            .page-number:after { counter-increment: page; content: "Page " counter(page); }
+
+            .print-watermark { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); opacity: 0.08; z-index: 9999; pointer-events: none; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; text-align: center; }
+            .print-watermark img { width: 350px; height: 350px; border-radius: 50%; filter: grayscale(100%); display: block; margin: 0 auto; }
+
+            .exam-title-box { text-align: left; direction: ltr; margin-bottom: 10mm; padding: 0 15mm; }
+            .exam-title-box h2 { font-family: 'Outfit'; font-size: 26px; font-weight: 900; color: #000; text-transform: uppercase; margin-bottom: 15px; text-align: left; }
+            .student-info-row { display: flex; align-items: flex-end; justify-content: flex-start; gap: 30px; font-family: 'Outfit', 'Cairo'; font-size: 16px; font-weight: 700; width: 100%; direction: ltr; text-align: left; }
+            .info-field { display: flex; align-items: flex-end; }
+            .name-field { flex: 2.5; }
+            .score-field { flex: 1; }
+            .info-label { margin-right: 10px; white-space: nowrap; padding-bottom: 2px; }
+            .info-line { border-bottom: 2px dotted #000; flex: 1; min-height: 20px; padding-bottom: 2px; text-align: center; color: #000; font-size: 18px; }
+
+            .print-q-container { padding: 0 15mm; }
+            .print-q-item { page-break-inside: avoid; margin-bottom: 22px; font-family: 'Outfit', 'Cairo'; }
+            .print-q-text { font-size: 17px; font-weight: 800; color: #000; margin-bottom: 10px; direction: ltr; text-align: left; display: block; width: 100%; }
+            .print-options-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; direction: ltr; text-align: left; }
+            .print-opt-item { display: flex; align-items: center; gap: 10px; font-size: 15px; font-weight: 600; color: #000; }
+            .print-opt-letter { width: 26px; height: 26px; border-radius: 50%; border: 2px solid #000; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 13px; flex-shrink: 0; }
+            .print-rule-box { display: none; }
+
+            /* MODE 1: Blank Exam + OMR */
+            body.print-blank-mode .print-opt-item.is-correct-opt { background: transparent !important; border: none !important; padding: 0 !important; }
+
+            /* MODE 2: Teacher Copy / Model Answer */
+            body.print-notes-mode #print-title-out::after { content: " (Model Answer & Notes)"; font-size: 16px; color: #555; display: block; margin-top: 5px; text-transform: none; }
+            body.print-notes-mode .print-opt-item.is-correct-opt { display: flex !important; background: #f0fdf4 !important; border: 1px solid #16a34a !important; padding: 8px 10px; border-radius: 8px; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+            body.print-notes-mode .print-opt-item.is-correct-opt .print-opt-letter { background: #16a34a !important; color: #fff !important; border-color: #16a34a !important; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+            body.print-notes-mode .print-rule-box { display: block !important; background: #f8fafc !important; border: 1px dashed #64748b !important; padding: 12px !important; border-radius: 8px !important; margin-top: 10px !important; font-family: 'Cairo'; font-size: 14px; font-weight: 700; direction: rtl; text-align: right; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+            body.print-notes-mode .omr-container { display: none !important; }
+
+            /* OMR Bubble Sheet */
+            .omr-container { display: none; page-break-before: always; padding: 10mm 15mm; font-family: 'Outfit'; }
+            body.omr-active .omr-container { display: block !important; }
+            .omr-title { text-align: center; font-size: 24px; font-weight: 900; margin-bottom: 20px; text-transform: uppercase; direction: ltr; }
+            .omr-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px 25px; direction: ltr; }
+            .omr-row { display: flex; align-items: center; gap: 12px; }
+            .omr-q-num { font-weight: 900; font-size: 15px; width: 28px; text-align: right; }
+            .omr-bubbles { display: flex; gap: 5px; }
+            .omr-bubble { width: 22px; height: 22px; border-radius: 50%; border: 2px solid #000; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: bold; }
+        }
+
+        /* 📱 MOBILE THUMB-FRIENDLY ADJUSTMENTS */
+        @media (max-width: 768px) {
+            body { padding: 12px 6px; }
+            .main-container { border-radius: 20px; }
+            header { padding: 65px 15px 25px; }
+            .top-bar-controls { top: 12px; padding: 0 12px; }
+            header img { width: 90px; height: 90px; margin-top: 15px; }
+            header h1 { font-size: 24px; }
+            .content-body, #result-screen { padding: 25px 16px; }
+            .timer-box { font-size: 15px; height: 40px; }
+            .icon-btn { width: 40px; height: 40px; }
+            .cheer-bubble { padding: 14px 18px; }
+            .avatar-grid { gap: 10px; padding: 15px 5px 25px 5px; }
+            .avatar-option { font-size: 26px; padding: 10px 14px; }
+            .action-btns { flex-direction: column; gap: 14px; margin-top: 30px; }
+            .btn { width: 100%; font-size: 16px; padding: 18px; }
+            .result-actions { grid-template-columns: 1fr; }
+            .btn-full { grid-column: span 1; }
+            .score-circle { width: 185px; height: 185px; font-size: 46px; }
+        }
+    </style>
+</head>
+<body id="main-body" class="theme-1">
+
+<div class="bg-orb"></div>
+<div class="bg-grid"></div>
+
+<div id="cheat-modal">
+    <div class="cheat-content">
+        <h1 style="color: var(--error-color);">🚨 رادار المراقبة الصامت</h1>
+        <p id="cheat-msg">تم رصد خروجك من شاشة التحدي وفقدان التركيز!</p>
+        <button type="button" onclick="document.getElementById('cheat-modal').style.display='none'" class="btn btn-outline" style="color:var(--error-color); border-color:var(--error-color); width:100%;">تمام، هركز جوه التحدي</button>
+    </div>
+</div>
+
+<div id="pause-modal">
+    <div class="cheat-content" style="border-color: var(--accent);">
+        <h1 style="color: var(--accent);">⏸️ إيقاف مؤقت آمن</h1>
+        <p id="pause-count-msg" style="color: var(--text-main); font-size: 18px; margin-bottom: 12px;"></p>
+        <p style="color: var(--text-muted); font-size: 15px; margin-bottom: 28px;">خلي بالك: رادار المراقبة لسه شغال، ولو خرجت بره المتصفح هيتسجل عليك تحذير.</p>
+        <button type="button" onclick="togglePause()" class="btn btn-solid" style="width:100%;">▶️ استئناف التحدي</button>
+    </div>
+</div>
+
+<!-- ========================================================
+     🖨️ PRINT MASTER ENGINE V.MAX CONTAINER
+     ======================================================== -->
+<div id="print-container">
+    <div class="print-watermark">
+        <img src="https://lh3.googleusercontent.com/d/1BqwA44F0BAwWMSwBnBeDIkfkNgBEtif-" alt="Watermark">
+    </div>
+    <table class="print-table">
+        <thead class="print-thead">
+            <tr>
+                <td>
+                    <div class="header-content">
+                        <img src="https://lh3.googleusercontent.com/d/1BqwA44F0BAwWMSwBnBeDIkfkNgBEtif-" alt="Logo">
+                        <div><strong>Mr. Ayman Kamel</strong><span>English Language Educator</span></div>
+                    </div>
+                </td>
+            </tr>
+        </thead>
+        <tbody class="print-tbody">
+            <tr>
+                <td>
+                    <div class="exam-title-box">
+                        <h2 id="print-title-out">ELITE CHALLENGE - CODE: CMP-ADV-60</h2>
+                        <div class="student-info-row">
+                            <div class="info-field name-field"><span class="info-label">Student Name:</span><div class="info-line" id="print-doc-student"></div></div>
+                            <div class="info-field score-field"><span class="info-label">Score:</span><div class="info-line" id="print-score-out">/ 60</div></div>
+                        </div>
+                    </div>
+                    
+                    <div class="print-q-container" id="print-q-list"></div>
+
+                    <div class="omr-container">
+                        <div class="omr-title">OMR Bubble Sheet</div>
+                        <div class="omr-grid" id="omr-grid"></div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot class="print-tfoot">
+            <tr>
+                <td>
+                    <div class="footer-content">
+                        <div>📞 01284749899</div>
+                        <div class="page-number"></div>
+                    </div>
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+</div>
+
+<div class="main-container" id="app-container">
+    
+    <header class="no-print">
+        <div class="top-bar-controls">
+            <div class="left-controls">
+                <div class="time-controls" id="timer-container" style="display: none;">
+                    <div class="timer-box" id="timer-box"><div class="time-dot"></div><span id="timer-text">--:--</span></div>
+                    <button type="button" class="icon-btn" id="btn-pause" onclick="togglePause()" title="إيقاف مؤقت">⏸️</button>
+                    <button type="button" class="icon-btn" id="btn-timer-view" onclick="toggleTimerView()" title="إخفاء الوقت">⏱️</button>
+                </div>
+            </div>
+            <div class="right-controls">
+                <div class="eye-care-controls" id="eye-care-container" style="display: none;">
+                    <button type="button" class="icon-btn" onclick="changeFontSize(2)" title="تكبير الخط">A+</button>
+                    <button type="button" class="icon-btn" onclick="changeFontSize(-2)" title="تصغير الخط">A-</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="cheer-wrapper" id="cheer-wrapper">
+            <div class="cheer-bubble">
+                <div class="cheer-text">
+                    <div class="cheer-en" id="cheer-en"></div>
+                    <div class="cheer-separator"></div>
+                    <div class="cheer-ar" id="cheer-ar"></div>
+                </div>
+                <img src="https://lh3.googleusercontent.com/d/1BqwA44F0BAwWMSwBnBeDIkfkNgBEtif-" alt="Mr. Ayman Kamel">
+            </div>
+        </div>
+
+        <img src="https://lh3.googleusercontent.com/d/1BqwA44F0BAwWMSwBnBeDIkfkNgBEtif-" alt="Mr. Ayman Kamel Logo" onclick="triggerEasterEgg()">
+        <h1>Mr. Ayman Kamel</h1>
+        <p class="job-title">English Language Educator</p>
+        <p class="slogan" style="unicode-bidi: isolate; direction: ltr;">"Let's learn together!"</p>
+        <div class="vip-phone">📞 01284749899</div>
+    </header>
+
+    <div class="content-body no-print" id="start-body">
+        <div id="start-screen">
+            <div class="welcome-card">
+                <h3>🌟 خطوتك لنادي النخبة تبدأ دلوقتي!</h3>
+                <p>التحدي ده معمول مخصوص عشان يقيس تركيزك الحقيقي وقوة ملاحظتك في أدق التفاصيل تحت الضغط. ركّز في كل حرف واثبت إنك قدها.<br><br>جاهز تدخل تحدي النخبة وتكسر الرقم القياسي؟</p>
+            </div>
+            
+            <h4 style="color: var(--text-main); font-weight: 800; margin-bottom: 15px; text-align: center;">اختار مستوى التحدي الزمني:</h4>
+            <div class="ta-grid">
+                <button type="button" class="btn ta-btn" onclick="setTimeAttack(20, this)">⚡ 20ث (أساطير)</button>
+                <button type="button" class="btn ta-btn" onclick="setTimeAttack(30, this)">🔥 30ث (محترفين)</button>
+                <button type="button" class="btn ta-btn" onclick="setTimeAttack(45, this)">⏳ 45ث (أبطال)</button>
+                <button type="button" class="btn ta-btn active" onclick="setTimeAttack(0, this)">🛑 كلاسيك (وقت مفتوح)</button>
+            </div>
+            
+            <h4 style="color: var(--text-main); font-weight: 800; margin-bottom: 15px; text-align: center;">اختار مفتاح العبور الخاص بيك:</h4>
+            <div class="avatar-grid">
+                <div class="avatar-option selected" onclick="selectAvatar(this, '💎')">💎</div>
+                <div class="avatar-option" onclick="selectAvatar(this, '🚀')">🚀</div>
+                <div class="avatar-option" onclick="selectAvatar(this, '⚡')">⚡</div>
+                <div class="avatar-option" onclick="selectAvatar(this, '🏆')">🏆</div>
+            </div>
+            <div class="input-group">
+                <input type="text" id="studentName" placeholder="اكتب اسمك الثلاثي هنا عشان تبدأ..." autocomplete="off" onkeypress="if(event.key === 'Enter') startQuiz()">
+            </div>
+            <button type="button" class="btn btn-solid" style="width:100%" id="start-btn-action" onclick="startQuiz()">START ASSESSMENT ➔</button>
+        </div>
+
+        <div id="quiz-screen" style="display: none;">
+            <div class="hud-progress-wrapper">
+                <div class="hud-stats">
+                    <div class="hud-student"><div class="avatar-ring" id="hud-avatar">💎</div> <span id="hud-name">--</span></div>
+                    <div class="hud-counter" id="progress-count">Q: 1 / 60</div>
+                </div>
+                <div class="hud-bar-container">
+                    <div class="hud-bar-fill" id="energy-bar"><div class="hud-avatar-runner" id="hud-moving-avatar">💎</div></div>
+                </div>
+            </div>
+            <div class="station-card" id="q-box">
+                <div class="question-text">
+                    <div class="question-text-wrapper"><span id="question-text-content" style="display: block; width: 100%; direction: ltr; text-align: left;">--</span></div>
+                    <div class="tts-btn-container"><button type="button" class="icon-btn" style="border-color:var(--accent); color:var(--accent); background: var(--input-bg);" onclick="speakQuestion()" title="استمع للسؤال">🔊</button></div>
+                </div>
+                <div class="options-list" id="options-list" style="direction: ltr;"></div>
+            </div>
+            <div class="action-btns">
+                <button type="button" class="btn btn-solid" id="next-btn" onclick="nextQuestion()">NEXT ➔</button>
+                <button type="button" class="btn btn-solid" id="submit-btn" onclick="calculateScore()" style="display: none;">🚀 SUBMIT</button>
+                <button type="button" class="btn btn-prev" id="prev-btn" onclick="prevQuestion()" disabled>⬅ PREV</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Result Screen -->
+    <div id="result-screen" style="display: none;">
+        <div class="score-card no-print">
+            <div class="score-circle" id="score-percentage">0 / 0</div>
+            <div id="score-percent-text">Accuracy: 0%</div>
+            <div id="student-display-name"><span class="result-avatar" id="res-avatar">💎</span> <span id="res-name"></span></div>
+            <div class="scratch-container">
+                <div id="badge-award-box" class="badge-award">اخدش عشان تشوف رتبتك</div>
+                <canvas id="scratch-canvas"></canvas>
+            </div>
+            <p id="score-details" style="font-size: 16px; font-weight: 700; margin-top: 25px; color: var(--text-muted);"></p>
+        </div>
+
+        <div class="result-actions no-print">
+            <button type="button" class="btn btn-outline" onclick="printBlankExam()">🖨️ طباعة كاختبار ورقي</button>
+            <button type="button" class="btn btn-outline" onclick="printSmartNotes()">📥 مذكرة الأخطاء (شرح)</button>
+            
+            <button type="button" class="btn btn-solid btn-full" id="cert-btn" onclick="downloadCertificate()" style="display: none;">📜 استخراج شهادة النخبة</button>
+            <button type="button" class="btn btn-outline btn-whatsapp" onclick="shareToTeacherWhatsApp()">👨‍🏫 إرسال التقرير لمستر أيمن</button>
+            <button type="button" class="btn btn-outline btn-whatsapp" onclick="shareToParentWhatsApp()">👨‍👩‍👧 تقرير ولي الأمر</button>
+            <button type="button" class="btn btn-outline btn-full" style="color:var(--accent); border-color:var(--accent);" onclick="location.reload()">🔄 إعادة المحاولة</button>
+        </div>
+
+        <h3 class="no-print" style="text-align: right; color: var(--text-main); margin-top: 20px; border-bottom: 2px dashed rgba(249, 115, 22, 0.28); padding-bottom: 12px; font-weight: 900; margin-bottom: 25px;">📂 المراجعة اللحظية (Smart Revision):</h3>
+        
+        <div id="review-list" class="no-print"></div>
+    </div>
+</div>
+
+<script>
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxps3pkSIfSFL8rwhCNMlNCEYkeL2ooxYo_6WgWRXHHL0hcY0owu-x0qRtZei0migOyxg/exec";
+const EXAM_TITLE = "ELITE CHALLENGE - CODE: CMP-ADV-60";
+const EXAM_SCORE_TEXT = "/ 60";
+
+function tryVibrate(pattern) { if (navigator.vibrate) try { navigator.vibrate(pattern); } catch(e){} }
+
+/* 🔥 REFRESH PROTECTION 🔥 */
+window.addEventListener('beforeunload', function (e) {
+    const qs = document.getElementById('quiz-screen');
+    if (qs && qs.style.display === 'block' && !isSubmitting) {
+        e.preventDefault();
+        e.returnValue = ''; 
+    }
+});
+
+/* 🖨️ Print Master Engine Direct Modes */
+function preparePrintData() {
+    const titleOut = document.getElementById("print-title-out");
+    const scoreOut = document.getElementById("print-score-out");
+    if(titleOut) titleOut.innerText = EXAM_TITLE;
+    if(scoreOut) scoreOut.innerText = EXAM_SCORE_TEXT;
+}
+
+function printBlankExam() {
+    preparePrintData();
+    const scoreOut = document.getElementById("print-score-out");
+    const docStudent = document.getElementById("print-doc-student");
+    if(scoreOut) scoreOut.innerText = EXAM_SCORE_TEXT;
+    if(docStudent) docStudent.innerText = "";
+    document.body.classList.remove('print-notes-mode');
+    document.body.classList.add('print-blank-mode');
+    document.body.classList.add('omr-active'); 
+    window.print();
+    document.body.classList.remove('print-blank-mode');
+    document.body.classList.remove('omr-active');
+}
+
+function printSmartNotes() {
+    preparePrintData();
+    const scoreOut = document.getElementById("print-score-out");
+    const docStudent = document.getElementById("print-doc-student");
+    if(scoreOut) scoreOut.innerText = `${window.finalScore || 0} / ${quizData.length}`;
+    if(docStudent) docStudent.innerText = studentName;
+    document.body.classList.remove('print-blank-mode');
+    document.body.classList.remove('omr-active'); 
+    document.body.classList.add('print-notes-mode');
+    window.print();
+    document.body.classList.remove('print-notes-mode');
+}
+
+/* Audio & Init */
+let audioCtx = null;
+function initAudio() { try { if (!audioCtx) { const AudioContext = window.AudioContext || window.webkitAudioContext; if(AudioContext) audioCtx = new AudioContext(); } if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume(); } catch(e) {} }
+function playTone(freq, type, duration) { try { initAudio(); if (!audioCtx) return; let osc = audioCtx.createOscillator(), gain = audioCtx.createGain(); osc.type = type; osc.frequency.value = freq; gain.gain.setValueAtTime(0.05, audioCtx.currentTime); gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration); osc.connect(gain); gain.connect(audioCtx.destination); osc.start(); osc.stop(audioCtx.currentTime + duration); } catch(e) {} }
+function soundWrongTime() { tryVibrate([120, 60, 120]); playTone(150, 'sawtooth', 0.3); setTimeout(()=>playTone(100, 'sawtooth', 0.4), 200); }
+function soundBossWin() { tryVibrate([200, 100, 200, 100, 200]); [523, 659, 783, 1046, 1318].forEach((f,i)=> setTimeout(()=>playTone(f,'square',0.15), i*100)); }
+
+function speakQuestion() {
+    if ('speechSynthesis' in window) {
+        try {
+            window.speechSynthesis.cancel();
+            let text = quizData[currentQuestion].originalQ.replace(/_+/g, "blank").replace(/\.{3,}/g, "blank");
+            let msg = new SpeechSynthesisUtterance(text); msg.lang = 'en-US'; msg.rate = 0.85;
+            window.speechSynthesis.speak(msg);
+        } catch(e){}
+    }
+}
+
+function initScratchCard() {
+    try {
+        const container = document.getElementById("badge-award-box");
+        const canvas = document.getElementById("scratch-canvas");
+        if(!container || !canvas) return;
+        const ctx = canvas.getContext("2d");
+        canvas.width = container.offsetWidth; canvas.height = container.offsetHeight;
+        let currentAccent = getComputedStyle(document.body).getPropertyValue('--accent').trim() || '#F97316';
+        ctx.fillStyle = '#07090F'; ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.font = "bold 18px 'Cairo', sans-serif"; ctx.fillStyle = currentAccent;
+        ctx.textAlign = "center"; ctx.textBaseline = "middle";
+        ctx.fillText("🪄 اخدش هنا عشان تشوف رتبتك", canvas.width/2, canvas.height/2);
+        let isDrawing = false;
+        function scratch(e) {
+            if(!isDrawing) return; e.preventDefault();
+            let rect = canvas.getBoundingClientRect();
+            let clientX = e.clientX !== undefined ? e.clientX : (e.touches && e.touches[0] ? e.touches[0].clientX : 0);
+            let clientY = e.clientY !== undefined ? e.clientY : (e.touches && e.touches[0] ? e.touches[0].clientY : 0);
+            let x = clientX - rect.left;
+            let y = clientY - rect.top;
+            ctx.globalCompositeOperation = "destination-out";
+            ctx.beginPath(); ctx.arc(x, y, 35, 0, Math.PI*2); ctx.fill();
+        }
+        canvas.onmousedown = () => isDrawing = true; canvas.ontouchstart = () => isDrawing = true;
+        canvas.onmouseup = () => isDrawing = false; canvas.ontouchend = () => isDrawing = false;
+        canvas.onmousemove = scratch; canvas.ontouchmove = scratch;
+    } catch(e) {}
+}
+
+/* 🧠 15 Fresh Exclusive Cheers */
+const cheers = [
+    {en: "Eagle eyes, zero slips!", ar: "عينك صقر، ولا فخ صغير بيعدي عليك!"},
+    {en: "That rhythm is pure gold!", ar: "إيقاعك دهبي، ماشي بثبات وتركيز عالي!"},
+    {en: "Built for the top tier!", ar: "المستوى ده بتاع الأوائل، كمّل يا بطل!"},
+    {en: "Calm mind, sharp answers!", ar: "أعصابك هادية وإجاباتك في الجون!"},
+    {en: "You're cracking every trap!", ar: "كل فخ بتفك شفرته في ثانية، عاش!"},
+    {en: "Don't slow down now!", ar: "أوعى تهدّي، نفسك طويل وهتقفلها!"},
+    {en: "Class-A performance!", ar: "أداء فئة أولى بجد، الله ينور عليك!"},
+    {en: "Every click counts!", ar: "كل اختيار بتاخده بيقربك من الكاس!"},
+    {en: "Unshakable confidence!", ar: "ثقة جبارة، ولا سؤال قادر يهزك!"},
+    {en: "Mastery mode unlocked!", ar: "إنت فتحت وضع الأساطير النهاردة!"},
+    {en: "Precision beats speed!", ar: "الدقة هي اللي بتكسب، ركّز وكمل!"},
+    {en: "You're owning this arena!", ar: "الساحة دي تحت سيطرتك بالكامل!"},
+    {en: "Keep that streak alive!", ar: "سلسلة النجاح شغالة، أوعى تكسرها!"},
+    {en: "Almost at the summit!", ar: "القمة قدام عينك خلاص، شد حيلك!"},
+    {en: "Finish like a legend!", ar: "قفلها زي الأساطير، إنت قدها!"}
+];
+let lastCheerIndex = -1; 
+function triggerTeacherCheer() {
+    const wrapper = document.getElementById("cheer-wrapper");
+    if(!wrapper) return;
+    let randomIndex; do { randomIndex = Math.floor(Math.random() * cheers.length); } while (randomIndex === lastCheerIndex); 
+    lastCheerIndex = randomIndex;
+    const enEl = document.getElementById("cheer-en");
+    const arEl = document.getElementById("cheer-ar");
+    if(enEl) enEl.innerText = cheers[randomIndex].en;
+    if(arEl) arEl.innerText = cheers[randomIndex].ar;
+    wrapper.classList.add("show"); setTimeout(() => { wrapper.classList.remove("show"); }, 3500);
+}
+
+/* 🦅 EASTER EGG (Logo 5 Clicks with Confetti zIndex 999999) */
+let logoClicks = 0, logoClickTimer;
+function triggerEasterEgg() {
+    logoClicks++; clearTimeout(logoClickTimer);
+    logoClickTimer = setTimeout(() => { logoClicks = 0; }, 1500);
+    if(logoClicks >= 5) {
+        soundBossWin();
+        try {
+            let confColor = getComputedStyle(document.body).getPropertyValue('--accent').trim() || '#F97316';
+            if (typeof confetti === 'function') {
+                confetti({ particleCount: 300, spread: 150, origin: { y: 0.5 }, colors: ['#07090F', confColor, '#F8FAFC'], zIndex: 999999 });
+            }
+        } catch(e){}
+        alert("💎 Midnight Bronze Theme Active (Masterpiece)! 💎"); 
+        logoClicks = 0; 
+    }
+}
+
+function changeFontSize(change) {
+    const root = document.documentElement;
+    let currentSize = parseInt(getComputedStyle(root).getPropertyValue('--q-font-size')) || 22;
+    let newSize = currentSize + change;
+    if(newSize >= 16 && newSize <= 30) root.style.setProperty('--q-font-size', newSize + 'px');
+}
+
+/* 🔥 EXACT DATA ARRAY - 60 Questions (Verbatim from Images 1-5) 🔥 */
+const rawData = [
+    { q: "1. We stayed in a ............... room during our vacation.", options: ["nice-decorating", "nicely-decorating", "nicely decorated", "nice-decorated"], answer: 2, rule: "Adverb (-ly) + P.P (no hyphen)", zatona: "لما الظرف ينتهي بـ ly (زي nicely) وجاي بعده تصريف ثالث لمعنى المجهول (decorated)، ما بنحطش واصلة (-)؛ فنختار nicely decorated." },
+    { q: "2. This is a ............... story from start to finish without doubt.", options: ["bad written", "bad-written", "written-badly", "badly written"], answer: 3, rule: "Adverb (-ly) + P.P (badly written)", zatona: "الظرف المنتهي بـ ly (badly) مع التصريف الثالث (written) بييجي من غير واصلة عشان المعنى مبني للمجهول (مكتوبة بشكل سيئ)." },
+    { q: "3. They are building a new ............... skyscraper with a very modern design.", options: ["New York", "-York", "New-York", "York"], answer: 0, rule: "Proper Noun Modifier (New York)", zatona: "أسماء الأعلام المركبة زي New York بتتكتب من غير واصلة حتى لو جت كصفة قبل اسم تاني (skyscraper)." },
+    { q: "4. Many young people prefer being ............... nowadays.", options: ["self employed", "self-employed", "self-employing", "self-employment"], answer: 1, rule: "Self + Hyphen + P.P (self-employed)", zatona: "الصفة المركبة اللي بتبدأ بـ self بتاخد واصلة وتصريف ثالث هنا بمعنى يعمل لحسابه الخاص: self-employed." },
+    { q: "5. My new job is ..............., so I have more free time.", options: ["parttime", "partly-time", "part-time", "part-timed"], answer: 2, rule: "Compound Adjective: part-time", zatona: "دوام جزئي صفة مركبة ثابتة بالواصلة ومابتتجمعش ولا بتاخد ed، هي part-time." },
+    { q: "6. My grandfather is a very ............... person.", options: ["down-to earth", "down-to-earth", "down to earth", "down to-earth"], answer: 1, rule: "Multi-word Hyphenated Adjective (down-to-earth)", zatona: "شخص متواضع وواقعي بتتكتب بواصلتين بين التلات كلمات قبل الاسم: down-to-earth." },
+    { q: "7. \"I am reading a fifty-page book.\" This means ............... .", options: ["The book has fifty pages", "The book is on page fifty", "The book costs fifty pounds", "I have read fifty pages of the book"], answer: 0, rule: "Meaning of fifty-page book", zatona: "معنى a fifty-page book إن الكتاب كله بيتكون من خمسين صفحة (The book has fifty pages)." },
+    { q: "8. Egypt is a ............... country throughout the entire Nile Valley.", options: ["densely-populating", "dense-populated", "dense populating", "densely populated"], answer: 3, rule: "Adverb (-ly) + P.P (densely populated)", zatona: "كثيفة السكان بتتكون من ظرف منتهي بـ ly (densely) وتصريف ثالث (populated) ومن غير واصلة." },
+    { q: "9. Look at that ............... man; he always smiles at everyone.", options: ["friendly looking", "friend-looking", "friendly-look", "friendly-looking"], answer: 3, rule: "Adjective + V-ing (friendly-looking)", zatona: "كلمة friendly هنا صفة مش ظرف رغم إنها بتنتهي بـ ly، عشان كده بتاخد واصلة قبل looking وتبقى friendly-looking." },
+    { q: "10. We ordered an ............... pizza for dinner to share with our friends.", options: ["American style", "American-style", "AmericanStyle", "American-style-ly"], answer: 1, rule: "Compound Adjective: American-style", zatona: "لما تيجي قبل اسم موصوف (pizza) بمعنى على الطريقة الأمريكية بنربطها بواصلة: American-style." },
+    { q: "11. Even though he didn't go to university, he is ............... .", options: ["self educated", "self-education", "self-educated", "self-educating"], answer: 2, rule: "Self + Hyphen + P.P (self-educated)", zatona: "علّم نفسه بنفسه هي الصفة المركبة الثابتة بواصلة: self-educated." },
+    { q: "12. The patient is ............... and needs to sit down.", options: ["light-headed", "light heading", "light-heading", "light-head"], answer: 0, rule: "Adjective + Noun-ed (light-headed)", zatona: "شاعر بدوار أو دوخة هي الصفة المركبة light-headed (صفة + اسم منتهي بـ ed)." },
+    { q: "13. Customers appreciate good ............... when buying expensive electronics.", options: ["after-sale cares", "after-sale care", "after-sales care", "after sale care"], answer: 2, rule: "Fixed Compound Term: after-sales care", zatona: "خدمة ما بعد البيع تعبير اصطلاحي ثابت بيتكتب بالجمع في كلمة sales مع الواصلة: after-sales care." },
+    { q: "14. I read an ............... report on the website.", options: ["up to date", "up to-date", "up-to-dated", "up-to-date"], answer: 3, rule: "Multi-word Hyphenated Adjective (up-to-date)", zatona: "تقرير حديث ومحدّث قبل الاسم (report) لازم يتحط له واصلتين: up-to-date." },
+    { q: "15. His ............... comment hurt his sister's feelings.", options: ["absent-minded", "absent-minding", "absent-minds", "absent-mind"], answer: 0, rule: "Adjective + Noun-ed (absent-minded)", zatona: "تعليق شارد الذهن أو غير واعٍ بنوصفه بالصفة المركبة absent-minded." },
+    { q: "16. Amr is a ............... man who started his own company at 20.", options: ["self-made", "self-making", "self made", "self make"], answer: 0, rule: "Self + Hyphen + P.P (self-made)", zatona: "رجل عصامي بنى نفسه بنفسه هي الصفة المركبة الثابتة بواصلة: self-made." },
+    { q: "17. My brother is neither young nor old. He is a ............... person.", options: ["middle-aged", "middle-aging", "middle-age", "middle-ages"], answer: 0, rule: "Adjective + Noun-ed (middle-aged)", zatona: "شخص في منتصف العمر بتاخد واصلة وed في الآخر فتبقى middle-aged." },
+    { q: "18. The fire broke out in a ............... which we had been living in before.", options: ["two-stories building", "two-stories buildings", "two-story building", "two-story buildings"], answer: 2, rule: "Article a + Number-singular noun + Singular noun", zatona: "وجود أداة النكرة a بيفرض إن الاسم building يكون مفرد، والصفة المركبة قبله مفردة برضه: two-story building." },
+    { q: "19. He behaves politely as he is a ............... person.", options: ["good-brought up", "well-bringing up", "better-bring up", "well-brought up"], answer: 3, rule: "Adv (well) + P.P (well-brought up)", zatona: "شخص مُربّى تربية حسنة (معنى مجهول) بنستخدم معاها الظرف well والتصريف الثالث: well-brought up." },
+    { q: "20. His degree course took five years to complete. It was a ............... course.", options: ["five-year degree", "five-years degree", "five-year degrees", "five-years degrees"], answer: 0, rule: "Number-singular noun before noun (five-year degree)", zatona: "الصفة المركبة من عدد واسم قبل موصوف (course) مابتتجمعش أبداً، فنختار five-year degree." },
+    { q: "21. That man always looks rather angry. He is a rather ............... man.", options: ["angry-looked", "angry-looks", "angry-looking", "angrily-looking"], answer: 2, rule: "Adjective + V-ing (angry-looking)", zatona: "رجل يبدو عليه الغضب بنصيغها بصفة + looking وبينهم واصلة: angry-looking." },
+    { q: "22. A ............... stranger helped us find the train station.", options: ["kindly hearted", "kindly hearting", "kind-hearts", "kind-hearted"], answer: 3, rule: "Adjective + Noun-ed (kind-hearted)", zatona: "طيب القلب هي الصفة المركبة kind-hearted (صفة + اسم منتهي بـ ed)." },
+    { q: "23. We aim to double the number of young people in ............... .", options: ["full-time job", "full-times job", "full-time jobs", "a full-time jobs"], answer: 2, rule: "Compound Adj + Plural Noun (full-time jobs)", zatona: "مفيش أداة نكرة a وبنتكلم عن شباب كتير، إذن الاسم جمع (jobs) والصفة المركبة تفضل مفردة: full-time jobs." },
+    { q: "24. Look at Leila. She's wearing a/an ............... skirt. She found it in her grandmother's drawer.", options: ["old-fashion", "old-fashioned", "new-fashionable", "old-fashioning"], answer: 1, rule: "Compound Adjective: old-fashioned", zatona: "موضة قديمة (بتاعة جدتها) بنوصفها بالصفة المركبة old-fashioned." },
+    { q: "25. It takes ten minutes to drive from my house to work. It is a ............... from my house to work.", options: ["ten-minute drives", "ten-minutes drives", "ten-minutes drive", "ten-minute drive"], answer: 3, rule: "Article a + Number-singular noun + Singular noun", zatona: "وجود a بيخلي الاسم drive مفرد، والصفة المركبة قبله مفردة بالواصلة: ten-minute drive." },
+    { q: "26. They planned the attack in a very clever way. It was a very ............... attack.", options: ["cleverly planning", "cleverly planned", "clever-planning", "cleverly-plan"], answer: 1, rule: "Adverb (-ly) + P.P (cleverly planned)", zatona: "الهجوم مُخطّط له بذكاء (معنى مجهول)، والظرف بينتهي بـ ly فنختار cleverly planned." },
+    { q: "27. I can't stand ............... people who are intolerant of new ideas.", options: ["narrow-mind", "narrow-minding", "narrow-minded", "narrow-minds"], answer: 2, rule: "Adjective + Noun-ed (narrow-minded)", zatona: "الناس ضيقة الأفق بنوصفهم بالصفة المركبة narrow-minded." },
+    { q: "28. His visit left an ............... impression on me.", options: ["ever-last", "ever-lasting", "ever lasted", "ever-lasted"], answer: 1, rule: "Adv + V-ing (ever-lasting)", zatona: "انطباع دائم ومستمر لا يزول بنستخدم معاه الصفة المركبة ever-lasting." },
+    { q: "29. The woman who won the prize was accompanied by a ............... man.", options: ["short-haired", "shorter-hair", "short-hair", "short-hairs"], answer: 0, rule: "Adjective + Noun-ed (short-haired)", zatona: "رجل ذو شعر قصير بتتصاغ بصفة + اسم منتهي بـ ed: short-haired." },
+    { q: "30. \"He's the ............... man I have ever met,\" said Mary about me.", options: ["good-looking", "best-looking", "good-looks", "good-looked"], answer: 1, rule: "Superlative Compound Adjective (best-looking)", zatona: "وجود the و ever met ده أسلوب تفضيل، فـ good-looking بتتحول لـ best-looking." },
+    { q: "31. The debate over the rights and wrongs of this issue has been a ............... discussion.", options: ["never-ending", "never-end", "never-ends", "never-endings"], answer: 0, rule: "Adv + V-ing (never-ending)", zatona: "نقاش لا ينتهي (مستمر/معلوم) بنستخدم معاه الصفة المركبة never-ending." },
+    { q: "32. The shirt is easy to wear. This means that \"...............\".", options: ["It is an easy-wear shirt", "It is an easy-wearing shirt", "It is an easy-to-wear shirt", "It is an easily-wear shirt"], answer: 2, rule: "Multi-word Compound Adjective (easy-to-wear)", zatona: "سهل الارتداء قبل الاسم shirt بتتربط بواصلتين وتبقى It is an easy-to-wear shirt." },
+    { q: "33. He is too ............... to care about others' feelings.", options: ["self centered", "self center", "self-centered", "self-centering"], answer: 2, rule: "Self + Hyphen + P.P (self-centered)", zatona: "شخص أناني ومتمحور حول نفسه هي الصفة المركبة بواصلة: self-centered." },
+    { q: "34. The decision was ............... and not just a guess.", options: ["evidence based", "evidence-based", "evidence-base", "evidence-basedly"], answer: 1, rule: "Noun + Hyphen + P.P (evidence-based)", zatona: "قرار مبني على أدلة (مجهول) بيتصاغ بواصلة وتصريف ثالث: evidence-based." },
+    { q: "35. They live a healthy ............... .", options: ["life-style", "life style", "life-styled", "lifestyle"], answer: 3, rule: "Closed Compound Noun (lifestyle)", zatona: "أسلوب الحياة كلمة مركبة متصلة ككلمة واحدة من غير مسافة ولا واصلة: lifestyle." },
+    { q: "36. The store sells ............... clothes only.", options: ["ready-to-wear", "ready-to-wearing", "ready to-wear", "ready to wear"], answer: 0, rule: "Multi-word Hyphenated Adjective (ready-to-wear)", zatona: "ملابس جاهزة للبس قبل الاسم clothes لازم تكون مربوطة بواصلتين: ready-to-wear." },
+    { q: "37. We are studying ............... this year and they find it very easy.", options: ["twentiethly century literature", "twentieth century literature", "twentieth-century literature", "twentieth century-literature"], answer: 2, rule: "Ordinal-Noun Compound Adjective", zatona: "أدب القرن العشرين: الصفة المركبة قبل literature بتتربط بواصلة بين العدد الترتيبي والاسم: twentieth-century literature." },
+    { q: "38. His argument was ............... and easy to understand.", options: ["selfly-evident", "self evidence", "self-evident", "self evident"], answer: 2, rule: "Self + Hyphen + Adj (self-evident)", zatona: "واضح بذاته وبديهي هي الصفة المركبة الثابتة بواصلة: self-evident." },
+    { q: "39. The battery in my phone is ..............., so it rarely needs to be charged.", options: ["time-consuming", "old-fashioned", "well-behaved", "long-lasting"], answer: 3, rule: "Compound Adjective Meaning: long-lasting", zatona: "بطارية بتقعد فترة طويلة ونادراً ما تتشحن تبقى long-lasting (طويلة الأمد)." },
+    { q: "40. It was a ............... offer; I had no choice.", options: ["take-it-or-leave-it", "take it or leave it", "taking-it-or-leaving-it", "take-it-or-leave it"], answer: 0, rule: "Phrase Compound Adjective before Noun", zatona: "لما جملة كاملة تيجي كصفة قبل الاسم (offer) بنربط كل كلماتها بواصلات: take-it-or-leave-it." },
+    { q: "41. The students gave a ............... musical performance.", options: ["highly-spiriting", "high-spiritual", "highly-spirits", "high-spirited"], answer: 3, rule: "Adj + Noun-ed (high-spirited)", zatona: "أداء مليان حماس وروح عالية بنوصفه بالصفة المركبة high-spirited." },
+    { q: "42. They spent a ............... trip in Spain. They enjoyed it very much.", options: ["five-day", "five days", "five day", "five-days"], answer: 0, rule: "Number-singular noun (five-day)", zatona: "الصفة المركبة من عدد واسم قبل موصوف (trip) بتيجي مفردة وبواصلة: five-day." },
+    { q: "43. You've given me the wrong change. I gave you a ............... .", options: ["ten-euros note", "ten-euro notes", "ten-euro note", "ten-euros notes"], answer: 2, rule: "Article a + Number-singular noun + Singular noun", zatona: "بسبب وجود a قبل الفراغ، الورقة النقدية مفردة (note) والصفة المركبة مفردة برضه: ten-euro note." },
+    { q: "44. I tried hard to find a ............... job but I had no success.", options: ["good-paid", "well-paid", "good-pays", "well-pay"], answer: 1, rule: "Adv (well) + P.P (well-paid)", zatona: "وظيفة مرتبها كويس ومجزية هي الصفة المركبة الثابتة well-paid (مش good-paid)." },
+    { q: "45. She put a well-............... case for increasing the fees.", options: ["reason", "reasons", "reasoned", "reasoning"], answer: 2, rule: "Well + P.P (well-reasoned)", zatona: "حجة أو قضية مدروسة ومنطقية (معنى مجهول) بتاخد التصريف الثالث بعد well- فتبقى well-reasoned." },
+    { q: "46. He claims to have sailed ............... round the world, but nobody believes him.", options: ["single-hands", "single-handed", "single-handing", "single-hand"], answer: 1, rule: "Compound Modifier: single-handed", zatona: "بمفرده وبدون مساعدة أحد هي الصيغة الثابتة بـ ed وواصلة: single-handed." },
+    { q: "47. Being a private university, it developed a ............... charitable program.", options: ["well-organized", "well-organize", "well-organizing", "well-organization"], answer: 0, rule: "Adv (well) + P.P (well-organized)", zatona: "برنامج مُنظَّم بشكل جيد (معنى مجهول) بياخد well + تصريف ثالث: well-organized." },
+    { q: "48. The first ............... ship in the world was launched in 1954.", options: ["nuclear-power", "nuclear-powers", "nuclear-powering", "nuclear-powered"], answer: 3, rule: "Noun/Adj + P.P (nuclear-powered)", zatona: "السفينة تُدار وتُشغَّل بالطاقة النووية (مبني للمجهول)، فنستخدم التصريف الثالث: nuclear-powered." },
+    { q: "49. His ............... speech aroused thunderous applause.", options: ["well-receive", "well-received", "good-received", "well-receiving"], answer: 1, rule: "Adv (well) + P.P (well-received)", zatona: "خطاب لاقى استحساناً وقبولاً جيداً (معنى مجهول) بنختار معاه well-received." },
+    { q: "50. Ali is a ............... student; everyone likes him.", options: ["clever polite", "clever-polite", "clever-and-polite", "cleverly-polite"], answer: 0, rule: "Two Independent Adjectives (no hyphen)", zatona: "دول صفتين مستقلتين كل واحدة فيهم بتوصف الطالب لوحدها (شاطر ومؤدب)، فمابنحطش بينهم واصلة: clever polite." },
+    { q: "51. Our company uses ............... technology for security.", options: ["cloudy-based", "cloud-base", "cloud-based", "cloud based"], answer: 2, rule: "Noun + Hyphen + P.P (cloud-based)", zatona: "تكنولوجيا قائمة على الحوسبة السحابية قبل الاسم technology بتاخد واصلة وتصريف ثالث: cloud-based." },
+    { q: "52. We are planning a ............... trip to Europe next summer.", options: ["two week", "two-weeks", "two-week", "two weeks'"], answer: 2, rule: "Number-singular noun (two-week)", zatona: "قبل الاسم trip الصفة المركبة من عدد واسم لازم تكون مفردة ومربوطة بواصلة: two-week." },
+    { q: "53. A: Is your car new? B: No, it's not ............... .", options: ["brandy new", "brand newly", "brand-newly", "brand-new"], answer: 3, rule: "Fixed Compound Adjective: brand-new", zatona: "جديد تماماً (زيرو) هي الصفة المركبة الثابتة brand-new." },
+    { q: "54. Most people prefer ............... products because they are high quality.", options: ["top of the range", "top-of-the-range", "top of-the-range", "top-of the range"], answer: 1, rule: "Multi-word Hyphenated Adjective (top-of-the-range)", zatona: "منتجات فاخرة من أعلى فئة، وطالما جت قبل الاسم (products) لازم كل الكلمات تتربط بواصلات: top-of-the-range." },
+    { q: "55. \"The medicine is side-effect-free.\" This means ............... .", options: ["The medicine has many side effects", "The medicine only works on side effects", "The medicine does not cause side effects", "The side effects are free of charge"], answer: 2, rule: "Suffix -free Meaning (without)", zatona: "اللاحقة -free في الصفات المركبة معناها خالٍ من؛ يعني الدواء مابيسببش آثار جانبية (does not cause side effects)." },
+    { q: "56. Most of our exams are ............... now.", options: ["computer-based", "computer-base", "computers-based", "computer based"], answer: 0, rule: "Noun + Hyphen + P.P (computer-based)", zatona: "امتحانات إلكترونية قائمة على الكمبيوتر بتتصاغ بواصلة وتصريف ثالث: computer-based." },
+    { q: "57. Which of the following is WRONG?", options: ["A well-trained doctor.", "A world-famous doctor.", "A self-trained doctor.", "A colorful-Egyptian doctor."], answer: 3, rule: "No Hyphen Between Unrelated Adjectives", zatona: "الجملة الخطأ هي (A colorful-Egyptian doctor) لأن دول صفتين مستقلتين عن بعض ومش صفة مركبة، فماينفعش نحط بينهم واصلة." },
+    { q: "58. \"He is an absent-minded scientist.\" This scientist is likely to ............... .", options: ["work for many hours", "forget things easily", "be very famous", "be very intelligent"], answer: 1, rule: "Meaning of absent-minded", zatona: "الشخص شارد الذهن (absent-minded) معناه إنه بينسى الحاجات بسهولة (forget things easily)." },
+    { q: "59. In \"a fifteenth-century painting\", why don't we say \"fifteenth-centuries\"?", options: ["Because \"century\" acts as part of an adjective before a noun.", "Because the painting is old.", "Because \"fifteenth\" is a small number.", "Because \"painting\" is singular."], answer: 0, rule: "Adjectives Never Take Plural Form", zatona: "الصفة في الإنجليزي مابتتجمعش أبداً، وهنا century جزء من صفة مركبة قبل الاسم painting عشان كده بتفضل مفردة." },
+    { q: "60. Which sentence uses the hyphen correctly to avoid using \"and\"?", options: ["It is a cold, blooded creature.", "It is a cold: blooded creature.", "It is a cold-blooded creature.", "It is a cold blooded-creature."], answer: 2, rule: "Correct Hyphenation (cold-blooded)", zatona: "الاستخدام الصحيح للواصلة لربط جزئي الصفة المركبة قبل الموصوف creature هو: It is a cold-blooded creature." }
+];
+
+let typeInterval = null;
+let timeAttackLevel = 0;
+let isTimeAttack = false;
+
+function setTimeAttack(level, el) {
+    timeAttackLevel = level;
+    isTimeAttack = (level > 0);
+    document.querySelectorAll('.ta-btn').forEach(btn => btn.classList.remove('active'));
+    if(el) el.classList.add('active');
+}
+
+let quizData = [];
+let currentQuestion = 0, userAnswers = {}, studentName = "", selectedAvatar = '💎';
+let totalSeconds = 60 * 240, qTimeLeft = 15, timerInterval = null;
+let isSubmitting = false; 
+let pauseCount = 0, isPaused = false; 
+let cheatWarningsCount = 0;
+
+/* 🛡️ Silent Radar (Active even during Pause) */
+document.addEventListener("visibilitychange", () => {
+    const quizScreen = document.getElementById("quiz-screen");
+    if (document.hidden && quizScreen && quizScreen.style.display === "block" && !isSubmitting) {
+        cheatWarningsCount++;
+        soundWrongTime();
+        if (cheatWarningsCount > 3) {
+            alert("🚨 رادار المراقبة: تم سحب ورقة التقييم إجبارياً لتكرار الخروج من الشاشة!");
+            calculateScore(); 
+        } else {
+            const msgEl = document.getElementById('cheat-msg');
+            if(msgEl) msgEl.innerText = `خلي بالك! رادار المراقبة لقط خروجك من شاشة التحدي.\nده التحذير رقم (${cheatWarningsCount} من 3).\nفي المرة الرابعة الورقة هتتسحب منك تلقائي!`;
+            const modalEl = document.getElementById('cheat-modal');
+            if(modalEl) modalEl.style.display = 'flex';
+        }
+    }
+});
+
+document.addEventListener('contextmenu', e => e.preventDefault());
+document.addEventListener('keydown', e => { if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J')) || (e.ctrlKey && e.key === 'U') || (e.ctrlKey && (e.key === 'c' || e.key === 'v' || e.key === 'x'))) e.preventDefault(); });
+document.addEventListener('copy', e => e.preventDefault()); 
+document.addEventListener('paste', e => e.preventDefault()); 
+document.addEventListener('cut', e => e.preventDefault());
+
+function shuffleArray(array) { 
+    for (let i = array.length - 1; i > 0; i--) { 
+        const j = Math.floor(Math.random() * (i + 1)); 
+        [array[i], array[j]] = [array[j], array[i]]; 
+    } 
+}
+
+function initQuizData() {
+    if (!rawData || rawData.length === 0) return;
+    let tempArray = JSON.parse(JSON.stringify(rawData));
+    shuffleArray(tempArray); 
+    quizData = tempArray.map((item, index) => {
+        let correctText = item.options[item.answer];
+        shuffleArray(item.options); 
+        return { 
+            rule: item.rule || "Grammar Rule", 
+            originalQ: item.q, 
+            q: `${index + 1}. ` + item.q.replace(/^\d+\.\s*/, ''), 
+            options: item.options, 
+            answer: item.options.indexOf(correctText), 
+            zatona: item.zatona || item.rule
+        };
+    });
+}
+
+function updateChromaShift() {
+    let themesCount = 5;
+    let itemsPerTheme = Math.ceil(quizData.length / themesCount);
+    let levelIndex = Math.floor(currentQuestion / itemsPerTheme); 
+    if(levelIndex > 4) levelIndex = 4;
+    document.body.className = `theme-${levelIndex + 1}`;
+}
+
+function selectAvatar(el, avatar) { 
+    document.querySelectorAll('.avatar-option').forEach(o => o.classList.remove('selected')); 
+    if(el) el.classList.add('selected'); 
+    selectedAvatar = avatar; 
+}
+
+function toggleTimerView() { 
+    const timerText = document.getElementById("timer-text");
+    if(timerText) timerText.classList.toggle("hidden-timer"); 
+}
+
+function startQuiz() {
+    try {
+        const nameInput = document.getElementById("studentName");
+        const input = nameInput ? nameInput.value.trim() : "";
+        if (!input) { 
+            alert("لازم تكتب اسمك الثلاثي الأول عشان تبدأ التحدي!"); 
+            if(nameInput) nameInput.focus();
+            return; 
+        }
+        studentName = input; 
+        initAudio();
+        initQuizData(); 
+        
+        const startScreen = document.getElementById("start-screen");
+        const quizScreen = document.getElementById("quiz-screen");
+        const timerContainer = document.getElementById("timer-container");
+        const eyeContainer = document.getElementById("eye-care-container");
+
+        if(startScreen) startScreen.style.display = "none";
+        if(quizScreen) quizScreen.style.display = "block";
+        if(timerContainer) timerContainer.style.display = "flex";
+        if(eyeContainer) eyeContainer.style.display = "flex";
+        
+        const hudAvatar = document.getElementById("hud-avatar");
+        const hudName = document.getElementById("hud-name");
+        const hudMovingAvatar = document.getElementById("hud-moving-avatar");
+        const printDocStudent = document.getElementById("print-doc-student");
+        const resAvatar = document.getElementById("res-avatar");
+
+        if(hudAvatar) hudAvatar.innerText = selectedAvatar;
+        if(hudName) hudName.innerText = studentName;
+        if(hudMovingAvatar) hudMovingAvatar.innerText = selectedAvatar;
+        if(printDocStudent) printDocStudent.innerText = studentName;
+        if(resAvatar) resAvatar.innerText = selectedAvatar;
+
+        totalSeconds = quizData.length * 240; 
+        if (!isTimeAttack) {
+            let m = Math.floor(totalSeconds / 60), s = totalSeconds % 60;
+            const timerText = document.getElementById("timer-text");
+            if(timerText) timerText.innerText = `${m < 10 ? '0'+m : m}:${s < 10 ? '0'+s : s}`;
+        }
+
+        loadQuestion();
+    } catch (error) { console.error(error); }
+}
+
+function loadQuestion() {
+    if (typeInterval) clearInterval(typeInterval);
+    if (timerInterval) clearInterval(timerInterval);
+    updateChromaShift();
+    
+    if(isTimeAttack) { 
+        qTimeLeft = timeAttackLevel; 
+        const timerBox = document.getElementById("timer-box");
+        const timerText = document.getElementById("timer-text");
+        if(timerBox) timerBox.classList.remove("danger"); 
+        if(timerText) timerText.innerText = `00:${qTimeLeft < 10 ? '0' + qTimeLeft : qTimeLeft}`; 
+    }
+
+    const item = quizData[currentQuestion];
+    const optionsList = document.getElementById("options-list");
+    
+    if(optionsList) {
+        optionsList.innerHTML = "";
+        item.options.forEach((opt, oIndex) => {
+            const div = document.createElement("div"); 
+            div.className = "option-item";
+            if (userAnswers[currentQuestion] === oIndex) div.classList.add("selected");
+            const letter = String.fromCharCode(65 + oIndex);
+            const letterDiv = document.createElement("div");
+            letterDiv.className = "opt-letter";
+            letterDiv.innerText = letter;
+            const textDiv = document.createElement("div");
+            textDiv.className = "opt-text";
+            textDiv.style.direction = "ltr";
+            textDiv.innerText = opt;
+            div.appendChild(letterDiv);
+            div.appendChild(textDiv);
+            div.onclick = () => selectOption(oIndex);
+            optionsList.appendChild(div);
+        });
+    }
+
+    const qTextContent = document.getElementById("question-text-content");
+    if(qTextContent) qTextContent.innerText = item.q;
+
+    const progCount = document.getElementById("progress-count");
+    if(progCount) progCount.innerText = `Q: ${currentQuestion + 1} / ${quizData.length}`;
+    
+    let percentProgress = Math.round(((currentQuestion + 1) / quizData.length) * 100);
+    const energyBar = document.getElementById("energy-bar");
+    if(energyBar) energyBar.style.width = `${percentProgress}%`;
+
+    const prevBtn = document.getElementById("prev-btn");
+    if(prevBtn) {
+        prevBtn.disabled = currentQuestion === 0;
+        if(isTimeAttack) prevBtn.style.display = "none";
+    }
+
+    const nextBtn = document.getElementById("next-btn");
+    const submitBtn = document.getElementById("submit-btn");
+    if(nextBtn) nextBtn.style.display = (currentQuestion === quizData.length - 1) ? "none" : "inline-flex";
+    if(submitBtn) submitBtn.style.display = (currentQuestion === quizData.length - 1) ? "inline-flex" : "none";
+    
+    startTimer();
+}
+
+function selectOption(oIndex) { 
+    userAnswers[currentQuestion] = oIndex; 
+    const optionsList = document.getElementById("options-list"); 
+    if(optionsList) {
+        Array.from(optionsList.children).forEach((child, i) => { 
+            if(i === oIndex) child.classList.add("selected"); 
+            else child.classList.remove("selected"); 
+        }); 
+    }
+}
+
+function nextQuestion(force = false) {
+    if (!force && userAnswers[currentQuestion] === undefined) { 
+        alert("لازم تختار إجابة الأول عشان تكمل يا بطل!"); 
+        return; 
+    }
+    if (currentQuestion < quizData.length - 1) { 
+        currentQuestion++; 
+        if (currentQuestion % 4 === 0 && currentQuestion !== 0) triggerTeacherCheer(); 
+        loadQuestion(); 
+    }
+}
+
+function prevQuestion() { 
+    if (currentQuestion > 0) { 
+        currentQuestion--; 
+        loadQuestion(); 
+    } 
+}
+
+function togglePause() {
+    const pauseModal = document.getElementById('pause-modal');
+    if (isPaused) { 
+        isPaused = false; 
+        if(pauseModal) pauseModal.style.display = 'none'; 
+        startTimer(); 
+    } else {
+        if (pauseCount >= 3) { 
+            alert("خلاص استخدمت كل محاولات الإيقاف المؤقت (3 من 3)!"); 
+            return; 
+        }
+        isPaused = true; 
+        pauseCount++; 
+        if(timerInterval) clearInterval(timerInterval);
+        
+        const pauseMsg = document.getElementById('pause-count-msg');
+        if(pauseMsg) pauseMsg.innerText = `استخدمت (${pauseCount} من 3) محاولات الإيقاف المؤقت.`;
+        if(pauseModal) pauseModal.style.display = 'flex';
+    }
+}
+
+function startTimer() {
+    if (timerInterval) clearInterval(timerInterval);
+    timerInterval = setInterval(() => {
+        if (isPaused) return;
+        if(isTimeAttack) {
+            qTimeLeft--;
+            const timerText = document.getElementById("timer-text");
+            const timerBox = document.getElementById("timer-box");
+            if(timerText) timerText.innerText = `00:${qTimeLeft < 10 ? '0' + qTimeLeft : qTimeLeft}`;
+            if (qTimeLeft <= 5 && qTimeLeft > 0) {
+                if(timerBox) timerBox.classList.add("danger");
+                if(qTimeLeft === 5) soundWrongTime();
+                const appContainer = document.getElementById("app-container");
+                if(appContainer) {
+                    appContainer.classList.add("shake-active");
+                    setTimeout(()=> appContainer.classList.remove("shake-active"), 400);
+                }
+            } else if (qTimeLeft > 5) { 
+                if(timerBox) timerBox.classList.remove("danger"); 
+            }
+            if (qTimeLeft <= 0) { 
+                soundWrongTime();
+                if(userAnswers[currentQuestion] === undefined) { userAnswers[currentQuestion] = -1; } 
+                if(currentQuestion < quizData.length - 1) { nextQuestion(true); } 
+                else { calculateScore(); } 
+            }
+        } else {
+            totalSeconds--;
+            let m = Math.floor(totalSeconds / 60), s = totalSeconds % 60;
+            const timerText = document.getElementById("timer-text");
+            const timerBox = document.getElementById("timer-box");
+            if(timerText) timerText.innerText = `${m < 10 ? '0'+m : m}:${s < 10 ? '0'+s : s}`;
+            if (totalSeconds <= 300) { 
+                if(timerBox) timerBox.classList.add("danger"); 
+                if(totalSeconds === 300) soundWrongTime();
+                if(totalSeconds % 2 === 0 && timerBox) { 
+                    timerBox.classList.add("shake-active"); 
+                    setTimeout(()=> timerBox.classList.remove("shake-active"), 400); 
+                } 
+            } else { 
+                if(timerBox) timerBox.classList.remove("danger"); 
+            }
+            if (totalSeconds <= 0) { 
+                if(timerInterval) clearInterval(timerInterval); 
+                soundWrongTime();
+                calculateScore(); 
+            }
+        }
+    }, 1000);
+}
+
+function escapeHTML(str) {
+    return String(str).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+}
+
+function calculateScore() {
+    if(isSubmitting) return; 
+    isSubmitting = true;
+    try {
+        if (timerInterval) clearInterval(timerInterval);
+        
+        const startBody = document.getElementById("start-body");
+        const timerContainer = document.getElementById("timer-container");
+        const eyeContainer = document.getElementById("eye-care-container");
+        const resultScreen = document.getElementById("result-screen");
+
+        if(startBody) startBody.style.display = "none";
+        if(timerContainer) timerContainer.style.display = "none";
+        if(eyeContainer) eyeContainer.style.display = "none";
+        if(resultScreen) resultScreen.style.display = "block";
+        window.scroll({ top: 0, left: 0 });
+
+        let score = 0; 
+        const reviewList = document.getElementById("review-list"); 
+        if(reviewList) reviewList.innerHTML = "";
+        
+        let printQList = document.getElementById("print-q-list"); 
+        if(printQList) printQList.innerHTML = "";
+        
+        let omrGrid = document.getElementById("omr-grid"); 
+        if(omrGrid) omrGrid.innerHTML = "";
+
+        let wrongAnswersHTML = ""; 
+        let ruleMistakes = {};
+
+        quizData.forEach((item, index) => {
+            const isCorrect = userAnswers[index] === item.answer;
+            if (isCorrect) { score++; } 
+            else { ruleMistakes[item.rule] = (ruleMistakes[item.rule] || 0) + 1; }
+            
+            let userOptText = "لم يتم الحل ❌"; 
+            let emailUserOptText = "Not answered ❌";
+            if (userAnswers[index] !== undefined && userAnswers[index] !== -1) { 
+                userOptText = item.options[userAnswers[index]]; 
+                emailUserOptText = item.options[userAnswers[index]]; 
+            }
+            const correctOpt = item.options[item.answer];
+
+            if (!isCorrect) {
+                wrongAnswersHTML += `<div style="margin-bottom: 20px; padding-bottom: 20px; border-bottom: 2px solid rgba(244, 63, 94, 0.2);">
+                    <div style="direction: ltr; text-align: left; font-weight: bold; color: #F97316; margin-bottom: 8px; font-size: 16px;">Q: ${escapeHTML(item.originalQ)}</div>
+                    <div style="direction: ltr; text-align: left; color: #F43F5E; font-size: 15px; margin-bottom: 4px;">❌ Student's Answer: ${escapeHTML(emailUserOptText)}</div>
+                    <div style="direction: ltr; text-align: left; color: #10B981; font-size: 15px; margin-bottom: 10px;">✅ Correct Answer: ${escapeHTML(correctOpt)}</div>
+                    <div style="background: rgba(255,255,255,0.03); padding: 12px; border-radius: 6px; border-left: 4px solid #F97316;">
+                        <div style="direction: ltr; text-align: left; color: #94A3B8; font-family: 'Outfit'; font-size: 14px; margin-bottom: 8px;">💡 Explanation: ${escapeHTML(item.rule)}</div>
+                        <div style="width: 100%; height: 1px; background: rgba(255,255,255,0.05); border-bottom: 1px dashed rgba(249, 115, 22, 0.2); margin: 8px 0;"></div>
+                        <div style="direction: rtl; text-align: right; color: #FFF; font-family: 'Cairo'; font-size: 14px; font-weight: bold; margin-top: 8px;">✨ الزتونة: ${escapeHTML(item.zatona)}</div>
+                    </div>
+                </div>`;
+            }
+
+            /* Print Master Engine Data Injection */
+            let printOptionsHTML = '<div class="print-options-grid">';
+            item.options.forEach((opt, idx) => {
+                let isCorrectOptClass = (idx === item.answer) ? 'is-correct-opt' : '';
+                printOptionsHTML += `<div class="print-opt-item ${isCorrectOptClass}"><div class="print-opt-letter">${String.fromCharCode(65 + idx)}</div><div class="print-opt-text">${escapeHTML(opt)}</div></div>`;
+            });
+            printOptionsHTML += '</div>';
+
+            let printItemHTML = `
+                <div class="print-q-item ${isCorrect ? 'ans-correct' : 'ans-wrong'}">
+                    <div class="print-q-text">${escapeHTML(item.q)}</div>
+                    ${printOptionsHTML}
+                    <div class="print-rule-box">💡 الزتونة: ${escapeHTML(item.zatona)}</div>
+                </div>
+            `;
+            if(printQList) printQList.innerHTML += printItemHTML;
+
+            let omrRowHTML = `<div class="omr-row"><div class="omr-q-num">${index + 1}.</div><div class="omr-bubbles">`;
+            for(let b=0; b<4; b++){
+                omrRowHTML += `<div class="omr-bubble">${String.fromCharCode(65 + b)}</div>`;
+            }
+            omrRowHTML += `</div></div>`;
+            if(omrGrid) omrGrid.innerHTML += omrRowHTML;
+
+            const div = document.createElement("div");
+            div.className = `review-item ${isCorrect ? 'is-correct' : 'is-wrong'}`;
+            div.innerHTML = `
+                <div style="font-weight:800; font-size:16px; margin-bottom:8px; direction: ltr; color: var(--text-main);">${escapeHTML(item.q)}</div>
+                <div class="ui-ans-box">
+                    <div style="direction: rtl; color: var(--text-muted);">إجابتك: <div style="color:${isCorrect?'var(--success-color)':'var(--error-color)'}; direction: ltr; display: inline-block; font-weight: 800;">${escapeHTML(userOptText)}</div></div>
+                    ${!isCorrect ? `<div style="color:var(--success-color); font-weight:800; margin-top:4px; direction: rtl;">الإجابة الصحيحة: <div style="direction: ltr; display: inline-block;">${escapeHTML(correctOpt)}</div></div>` : ''}
+                </div>
+                <div class="explanation-box">
+                    <div style="direction: ltr; text-align: left; color: var(--text-muted); font-family: 'Outfit'; font-size: 16px; font-weight: 600; line-height: 1.6;">💡 Explanation: ${escapeHTML(item.rule)}</div>
+                    <div style="width: 100%; height: 1px; background: rgba(255,255,255,0.06); border-bottom: 1px dashed rgba(255,255,255,0.12); margin: 4px 0;"></div>
+                    <div style="direction: rtl; text-align: right; color: #FFF; font-weight: 700; font-size: 16px; line-height: 1.7;">✨ الزتونة: ${escapeHTML(item.zatona)}</div>
+                </div>
+            `;
+            if(reviewList) reviewList.appendChild(div);
+        });
+
+        const percent = Math.round((score / quizData.length) * 100);
+        window.finalScore = score; 
+        window.finalPercent = percent;
+
+        let weakestRule = "لا يوجد أخطاء 🏆"; 
+        let maxMistakes = 0;
+        for (let r in ruleMistakes) { 
+            if (ruleMistakes[r] > maxMistakes) { 
+                maxMistakes = ruleMistakes[r]; 
+                weakestRule = r; 
+            } 
+        }
+        if(wrongAnswersHTML === "") wrongAnswersHTML = "الطالب قفل التقييم بامتياز! مفيش ولا غلطة 🏆";
+
+        document.body.className = "theme-1"; 
+        
+        const resName = document.getElementById("res-name");
+        const printScoreOut = document.getElementById("print-score-out");
+        const scorePercentage = document.getElementById("score-percentage");
+        const scorePercentText = document.getElementById("score-percent-text");
+        const scoreDetails = document.getElementById("score-details");
+        const badgeAwardBox = document.getElementById("badge-award-box");
+        const certBtn = document.getElementById("cert-btn");
+
+        if(resName) resName.innerText = studentName;
+        if(printScoreOut) printScoreOut.innerText = `${score} / ${quizData.length}`;
+        if(scorePercentage) scorePercentage.innerText = `${score} / ${quizData.length}`;
+        if(scorePercentText) scorePercentText.innerText = `Accuracy: ${percent}%`;
+        
+        let modTxt = isTimeAttack ? " (Time Attack 🔥)" : "";
+        if(scoreDetails) scoreDetails.innerText = `عاش يا بطل! تم تسليم التحدي بنجاح ${modTxt}`;
+
+        let badge = percent >= 90 ? "👑 النخبة (Elite)" : percent >= 75 ? "🔥 أداء متميز (Pro)" : "🌱 محاولة مبشرة (Challenger)";
+        if(badgeAwardBox) badgeAwardBox.innerText = badge;
+        
+        if (percent >= 80 && certBtn) certBtn.style.display = "inline-flex";
+
+        try { soundBossWin(); } catch(e){}
+        try { setTimeout(() => initScratchCard(), 60); } catch(e){}
+        try { 
+            let confColor = getComputedStyle(document.body).getPropertyValue('--accent').trim() || '#F97316'; 
+            if (percent >= 80 && typeof confetti === 'function') {
+                confetti({ particleCount: 300, spread: 150, origin: { y: 0.6 }, colors: ['#07090F', confColor, '#F8FAFC'], zIndex: 999999 }); 
+            }
+        } catch(e){}
+
+        try {
+            let usedTime = isTimeAttack ? "Time Attack" : ((quizData.length * 240) - totalSeconds) + "s";
+            let payload = new URLSearchParams({ 
+                examName: EXAM_TITLE, 
+                studentName: studentName, 
+                score: `${score} / ${quizData.length}`, 
+                percentage: percent, 
+                date: new Date().toLocaleString('en-GB'), 
+                timeSpent: usedTime, 
+                wrongAnswers: wrongAnswersHTML, 
+                cheatWarnings: cheatWarningsCount, 
+                weakestRule: weakestRule 
+            });
+            fetch(SCRIPT_URL, { method: "POST", mode: "no-cors", headers: { "Content-Type": "application/x-www-form-urlencoded" }, body: payload }).catch(err => {});
+        } catch(e){}
+
+    } catch(e) { 
+        console.error("Score calculation error: ", e);
+        const qs = document.getElementById("quiz-screen");
+        const rs = document.getElementById("result-screen");
+        if(qs) qs.style.display = "none";
+        if(rs) rs.style.display = "block";
+        document.getElementById("score-percentage").innerText = "تم التسليم";
+        document.getElementById("score-details").innerText = "تم حفظ التقييم بنجاح.";
+    }
+}
+
+function shareToParentWhatsApp() { 
+    let txt = `👨‍👩‍👧 تقرير أداء - التحدي الأكبر\n👤 الطالب: ${studentName}\n📊 النسبة: ${window.finalPercent}%\n✨ تحت إشراف مستر أيمن كامل.`; 
+    window.open(`https://wa.me/?text=${encodeURIComponent(txt)}`, '_blank'); 
+}
+function shareToTeacherWhatsApp() { 
+    let txt = `👨‍🏫 تقرير تسليم - التحدي الأكبر\n👤 الطالب: ${studentName}\n🎯 الدرجة: ${window.finalScore} / ${quizData.length}\n📊 النسبة: ${window.finalPercent}%`; 
+    window.open(`https://wa.me/201284749899?text=${encodeURIComponent(txt)}`, '_blank'); 
+}
+
+function downloadCertificate() {
+    try {
+        const canvas = document.createElement('canvas'); 
+        canvas.width = 1000; 
+        canvas.height = 700; 
+        const ctx = canvas.getContext('2d');
+        let accent = getComputedStyle(document.body).getPropertyValue('--accent').trim() || '#F97316';
+        
+        ctx.fillStyle = '#07090F'; 
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        
+        ctx.save(); 
+        ctx.translate(canvas.width / 2, canvas.height / 2); 
+        ctx.rotate(-Math.PI / 6); 
+        ctx.globalAlpha = 0.04; 
+        ctx.font = "bold 110px 'Outfit'"; 
+        ctx.fillStyle = accent; 
+        ctx.textAlign = "center"; 
+        ctx.textBaseline = "middle"; 
+        ctx.fillText("MR. AYMAN KAMEL", 0, -60); 
+        ctx.fillText("ELITE MASTERY", 0, 70); 
+        ctx.restore();
+        
+        ctx.strokeStyle = accent; 
+        ctx.lineWidth = 10; 
+        ctx.strokeRect(30, 30, canvas.width - 60, canvas.height - 60); 
+        ctx.globalAlpha = 0.25; 
+        ctx.lineWidth = 3; 
+        ctx.strokeRect(42, 42, canvas.width - 84, canvas.height - 84); 
+        ctx.globalAlpha = 1.0;
+        
+        ctx.textAlign = "center"; 
+        ctx.fillStyle = accent; 
+        ctx.font = "bold 45px 'Outfit'"; 
+        ctx.fillText("✨ Certificate of Ultimate Mastery ✨", canvas.width / 2, 120);
+        
+        ctx.fillStyle = "#94A3B8"; 
+        ctx.font = "30px 'Outfit'"; 
+        ctx.fillText("This prestigious document is awarded to the elite student:", canvas.width / 2, 220);
+        
+        ctx.fillStyle = "#F8FAFC"; 
+        ctx.font = "bold 65px 'Cairo'"; 
+        ctx.fillText(studentName, canvas.width / 2, 320);
+        
+        ctx.fillStyle = "#94A3B8"; 
+        ctx.font = "25px 'Outfit'"; 
+        ctx.fillText(`For successfully decoding the "Elite Challenge" with an accuracy of`, canvas.width / 2, 420);
+        
+        ctx.fillStyle = "#10B981"; 
+        ctx.font = "bold 55px 'Outfit'"; 
+        ctx.fillText(`${window.finalScore} / ${quizData.length}  (${window.finalPercent}%)`, canvas.width / 2, 500);
+        
+        ctx.fillStyle = accent; 
+        ctx.font = "22px 'Outfit'"; 
+        ctx.fillText("System Architect: Mr. Ayman Kamel", canvas.width / 2, 600);
+        
+        let d = new Date(); 
+        ctx.font = "18px 'Outfit'"; 
+        ctx.fillText("Issue Date: " + d.toLocaleDateString('en-GB'), canvas.width / 2, 640);
+        
+        ctx.globalAlpha = 0.6; 
+        ctx.textAlign = "left"; 
+        ctx.font = "16px 'Outfit'"; 
+        ctx.fillText("ID: BRZ-" + d.getFullYear() + "-" + Math.floor(Math.random()*90000+10000), 55, 655); 
+        ctx.globalAlpha = 1.0;
+        
+        const link = document.createElement('a'); 
+        link.download = `Elite_Mastery_${studentName}.png`; 
+        link.href = canvas.toDataURL('image/png'); 
+        link.click();
+    } catch(e){}
+}
+</script>
+</body>
+</html>
